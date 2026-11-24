@@ -12,6 +12,9 @@ ENTRY = "It worked on my machine — my machine just never had 40,000 users hamm
 
 
 def main() -> None:
+    lines = ENTRY.splitlines()
+    if len(lines) != 1 or not 1 <= len(ENTRY) <= 200 or not ENTRY.strip():
+        raise SystemExit("error: ENTRY must be exactly one non-blank line of 1-200 characters")
     output_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "./output"
     os.makedirs(output_dir, exist_ok=True)
     path = os.path.join(output_dir, "entry.txt")
